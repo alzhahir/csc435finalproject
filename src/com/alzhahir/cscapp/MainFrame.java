@@ -1,7 +1,8 @@
 package com.alzhahir.cscapp;
 
 import javax.swing.*;
-import java.awt.*;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.TableModel;
 
 public class MainFrame {
     private JFrame MainWindow;
@@ -15,14 +16,15 @@ public class MainFrame {
     private JTextField custNRIC;
     private JComboBox availableFlights;
     private JTable flightTable;
-    private JTextField textField1;
     private JButton cancelButton;
     private JButton submitButton;
 
     public MainFrame(){
+        //flightTable = createTable();
     }
 
     public static void main(String[] Args){
+        MainFrame frame = new MainFrame();
         JFrame mainWindow = new JFrame("9Air Ticket Management System");
         mainWindow.setContentPane(new MainFrame().MainPanel);
         mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,5 +35,12 @@ public class MainFrame {
         System.out.println(mainWindow.getSize());
         mainWindow.setMinimumSize(mainWindow.getSize());
         mainWindow.setVisible(true);
+    }
+
+    JTable createTable(){
+        String[] column = {"Flight Number", "Flight Date", "Flight Time"};
+        Object[][] data = {{"MH1022", "10/07/2021", "10:20"}, {"MH3022", "15/07/2021", "13:40"}};
+        JTable table = new JTable(data, column);
+        return table;
     }
 }
