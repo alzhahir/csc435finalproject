@@ -41,7 +41,14 @@ public class MainFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    throw new HttpConnectTimeoutException(null);
+                    int a = JOptionPane.showConfirmDialog(null,"Are you sure you want to cancel? Any unsaved changes will be lost.", "Confirm Exit", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                    if(a == JOptionPane.YES_OPTION){
+                        custName.setText(null);
+                        custNRIC.setText(null);
+                        custPhone.setText(null);
+                        availableFlights.setSelectedIndex(0);
+                        mainPane.setSelectedIndex(0);
+                    }
                 } catch (Exception error){
                     error.printStackTrace();
                     JOptionPane.showMessageDialog(null, error.toString(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -54,12 +61,18 @@ public class MainFrame {
             public void actionPerformed(ActionEvent e) {
                 if(custNRIC.getText().isEmpty()){
                     System.out.println("It's empty!!!!!");
+                    JOptionPane.showMessageDialog(null, "NRIC is a required field.", "Warning", JOptionPane.WARNING_MESSAGE);
+                    return;
                 }
                 if(custName.getText().isEmpty()){
                     System.out.println("It's empty!!!!!");
+                    JOptionPane.showMessageDialog(null, "Customer Name is a required field.", "Warning", JOptionPane.WARNING_MESSAGE);
+                    return;
                 }
                 if(custPhone.getText().isEmpty()){
                     System.out.println("It's empty!!!!!");
+                    JOptionPane.showMessageDialog(null, "Phone number is a required field.", "Warning", JOptionPane.WARNING_MESSAGE);
+                    return;
                 }
                 setCustNRIC = custNRIC.getText();
                 setCustName = custName.getText();
