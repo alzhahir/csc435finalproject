@@ -1,6 +1,5 @@
 package com.alzhahir.cscapp;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.util.Scanner;
@@ -76,7 +75,6 @@ public class IOManager {
             ArrayList<String> flightPrice = new ArrayList<>();
             while(fileReader.hasNextLine()){
                 data = fileReader.nextLine();
-                System.out.println(data);
                 StringTokenizer parseData = new StringTokenizer(data, ";");
                 String fn = parseData.nextToken();
                 String fd = parseData.nextToken();

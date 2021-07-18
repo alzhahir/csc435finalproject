@@ -1,11 +1,19 @@
 package com.alzhahir.cscapp;
 
+/*
+*   9Air Ticket Management System
+*
+*   Copyright (C) Megat Al Zhahir Daniel, Muhammad Adib, Mohamad Izzat
+*
+*   All rights reserved.
+*
+*   You may not copy this code into your assignments or educational projects,
+*   but you can refer to the code in case you need help.
+*/
+
 import javax.swing.*;
-import javax.swing.event.TableModelListener;
-import javax.swing.table.TableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 import java.net.http.HttpConnectTimeoutException;
 import java.util.ArrayList;
 
@@ -59,25 +67,8 @@ public class MainFrame {
     }
 
     JTable createTable(){
-        IOManager io = new IOManager("/flights.txt", "/bookings.txt");
-        String[] column = {"Number", "Flight Number", "Flight Date", "Flight Time", "Destination", "Price"};
-        ArrayList<ArrayList> flightImportData = io.inputData();
-        ArrayList flightID = flightImportData.get(0);
-        ArrayList flightDate = flightImportData.get(1);
-        ArrayList flightTime = flightImportData.get(2);
-        ArrayList flightDestination = flightImportData.get(3);
-        ArrayList flightPrice = flightImportData.get(4);
-        Object[][] tableData = new String[flightID.size()][column.length];
-        for(int i = 0; i < flightID.size(); i++){
-            String n = String.valueOf(i+1);
-            tableData[i][0] = n;
-            tableData[i][1] = flightID.get(i);
-            tableData[i][2] = flightDate.get(i);
-            tableData[i][3] = flightTime.get(i);
-            tableData[i][4] = flightDestination.get(i);
-            tableData[i][5] = flightPrice.get(i);
-        }
-        return new JTable(tableData, column);
+        FlightManager fMan = new FlightManager();
+        return new JTable(fMan.getAllFlightInfo(), fMan.getColumnInfo());
     }
 
     JComboBox createCombo(){

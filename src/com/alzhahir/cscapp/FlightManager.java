@@ -1,7 +1,6 @@
 package com.alzhahir.cscapp;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class FlightManager {
     private String flightID;
@@ -10,6 +9,10 @@ public class FlightManager {
     private String flightDestination;
     private String flightPrice;
     private String[] chosenFlight;
+    private String[] column = {"Number","Flight Number", "Flight Date", "Flight Time", "Destination", "Price"};
+
+    FlightManager(){
+    }
 
     FlightManager(int flightIndex){
         this.chosenFlight = new String[6];
@@ -29,29 +32,37 @@ public class FlightManager {
         //main method
     }
 
-    String[] getFlightInfo(int flightIndex){
+    String[][] getAllFlightInfo(){
         IOManager io = new IOManager("/flights.txt", "/bookings.txt");
-        String[] column = {"Number","Flight Number", "Flight Date", "Flight Time", "Destination", "Price"};
         ArrayList<ArrayList> flightImportData = io.inputData();
         ArrayList flightID = flightImportData.get(0);
         ArrayList flightDate = flightImportData.get(1);
         ArrayList flightTime = flightImportData.get(2);
         ArrayList flightDestination = flightImportData.get(3);
         ArrayList flightPrice = flightImportData.get(4);
-        Object[][] flightData = new String[flightID.size()][column.length];
+        String[][] flightData = new String[flightID.size()][column.length];
         for(int i = 0; i < flightID.size(); i++){
-            flightData[i][0] = String.valueOf(i);
-            flightData[i][1] = flightID.get(i);
-            flightData[i][2] = flightDate.get(i);
-            flightData[i][3] = flightTime.get(i);
-            flightData[i][4] = flightDestination.get(i);
-            flightData[i][5] = flightPrice.get(i);
+            flightData[i][0] = String.valueOf(i+1);
+            flightData[i][1] = String.valueOf(flightID.get(i));
+            flightData[i][2] = String.valueOf(flightDate.get(i));
+            flightData[i][3] = String.valueOf(flightTime.get(i));
+            flightData[i][4] = String.valueOf(flightDestination.get(i));
+            flightData[i][5] = String.valueOf(flightPrice.get(i));
         }
+        return flightData;
+    }
+
+    String[] getFlightInfo(int flightIndex){
+        String[][] allFlights = getAllFlightInfo();
         String[] chosenFlight = new String[column.length];
         for(int i = 0; i < column.length; i++){
-            chosenFlight[i] = flightData[flightIndex][i].toString();
+            chosenFlight[i] = allFlights[flightIndex][i].toString();
         }
         return chosenFlight;
+    }
+
+    String[] getColumnInfo(){
+        return column;
     }
     
     void setFlightInfo(String[] chosenFlight){
