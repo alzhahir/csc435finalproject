@@ -31,6 +31,9 @@ public class MainFrame {
     private JTable flightTable;
     private JButton cancelButton;
     private JButton submitButton;
+    private String setCustName;
+    private String setCustPhone;
+    private  String setCustNRIC;
 
     public MainFrame(){
         cancelButton.addActionListener(new ActionListener() {
@@ -48,6 +51,23 @@ public class MainFrame {
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(custNRIC.getText().isEmpty()){
+                    System.out.println("It's empty!!!!!");
+                }
+                if(custName.getText().isEmpty()){
+                    System.out.println("It's empty!!!!!");
+                }
+                if(custPhone.getText().isEmpty()){
+                    System.out.println("It's empty!!!!!");
+                }
+                setCustNRIC = custNRIC.getText();
+                setCustName = custName.getText();
+                setCustPhone = custPhone.getText();
+                CustomerManager csMan = new CustomerManager(setCustNRIC, setCustName,setCustPhone);
+                FlightManager flMan = new FlightManager(availableFlights.getSelectedIndex());
+                BookingManager boMan = new BookingManager(csMan.getCustomerNRIC(), csMan.getCustomerName(), csMan.getCustomerPhone(), flMan.getFlightID(), flMan.getFlightDestination(), flMan.getTotalPrice());
+
+                boMan.printOutput();
             }
         });
     }
@@ -88,6 +108,15 @@ public class MainFrame {
 
     void registerFlight(){
         FlightManager flMan = new FlightManager(availableFlights.getSelectedIndex());
+    }
+
+    String[] getCustomerForm(){
+        String[] customerInfo = new String[3];
+        customerInfo[0] = setCustNRIC;
+        customerInfo[1] = setCustName;
+        customerInfo[2] = setCustPhone;
+
+        return customerInfo;
     }
 
     private void createUIComponents() {

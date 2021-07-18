@@ -8,6 +8,7 @@ public class FlightManager {
     private String flightTime;
     private String flightDestination;
     private String flightPrice;
+    private double totalPrice;
     private String[] chosenFlight;
     private String[] column = {"Number","Flight Number", "Flight Date", "Flight Time", "Destination", "Price"};
 
@@ -17,7 +18,10 @@ public class FlightManager {
     FlightManager(int flightIndex){
         this.chosenFlight = new String[6];
         this.chosenFlight = getFlightInfo(flightIndex);
+        System.out.println("Setting Flight...");
         setFlightInfo(this.chosenFlight);
+        this.totalPrice = calculateTotalPrice();
+        System.out.println("Done Setting Flight.");
     }
 
     FlightManager(String flightID, String flightDate, String flightTime, String flightDestination, String flightPrice){
@@ -26,10 +30,6 @@ public class FlightManager {
         this.flightTime = flightTime;
         this.flightDestination = flightDestination;
         this.flightPrice = flightPrice;
-    }
-    
-    public static void main(String[] Args){
-        //main method
     }
 
     String[][] getAllFlightInfo(){
@@ -71,6 +71,11 @@ public class FlightManager {
         this.flightTime = chosenFlight[3];
         this.flightDestination = chosenFlight[4];
         this.flightPrice = chosenFlight[5];
+        System.out.println(this.flightID);
+        System.out.println(this.flightDate);
+        System.out.println(this.flightTime);
+        System.out.println(this.flightDestination);
+        System.out.println(this.flightPrice);
     }
 
     String getFlightID(){
@@ -90,11 +95,16 @@ public class FlightManager {
     }
 
     double getFlightPrice(){
-        return Double.parseDouble(flightPrice);
+        return Double.parseDouble(this.flightPrice);
+    }
+
+    double getTotalPrice(){
+        return totalPrice;
     }
 
     double calculateTotalPrice(){
-        double flightPriceParsed = Double.parseDouble(flightPrice);
+        System.out.println(this.flightPrice);
+        double flightPriceParsed = Double.parseDouble(this.flightPrice);
         double tax = 0.06;
         return flightPriceParsed + flightPriceParsed * tax;
     }

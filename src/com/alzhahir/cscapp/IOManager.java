@@ -17,7 +17,6 @@ public class IOManager {
 
     IOManager(String inputFilename, String outputFilename){
         try {
-            this.workingDir = workingDir;
             this.inputFilename = inputFilename;
             this.outputFilename = outputFilename;
             inputFile = new File(this.workingDir+this.inputFilename);
@@ -39,21 +38,20 @@ public class IOManager {
         }
     }
 
-    public static void main(String[] Args){
+    void outputFlight(String[][] rawData){
         try {
-            //
-        } catch (Exception error){
-            error.printStackTrace();
-            System.exit(1);
-        }
-    }
+            PrintWriter fileWriter = new PrintWriter(new BufferedWriter(new FileWriter(outputFile, true)));;
 
-    void outputFlight(String[] CustomerNRIC, String[] flightID){
-        try {
-            PrintWriter fileWriter = new PrintWriter(outputFile);
-
-            for(int i = 0; i < flightID.length; i++){
-                fileWriter.println(CustomerNRIC[i]+flightID[i]);
+            int n = 0;
+            StringBuilder assembledData;
+            while (n < rawData.length){
+                assembledData = new StringBuilder(rawData[n][0]);
+                for(int i = 1; i < rawData[n].length; i++){
+                    assembledData.append(";").append(rawData[n][i]);
+                }
+                System.out.println(assembledData);
+                fileWriter.println(assembledData);
+                n++;
             }
             fileWriter.close();
         } catch (Exception error){
