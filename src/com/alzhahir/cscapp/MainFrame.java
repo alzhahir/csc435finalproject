@@ -60,29 +60,43 @@ public class MainFrame {
 
     JTable createTable(){
         IOManager io = new IOManager("/flights.txt", "/bookings.txt");
+        String[] column = {"Number", "Flight Number", "Flight Date", "Flight Time", "Destination", "Price"};
         ArrayList<ArrayList> flightImportData = io.inputData();
-        ArrayList flightNumber = flightImportData.get(0);
+        ArrayList flightID = flightImportData.get(0);
         ArrayList flightDate = flightImportData.get(1);
         ArrayList flightTime = flightImportData.get(2);
-        Object[][] tableData = new String[flightNumber.size()][3];
-        for(int i = 0; i < flightNumber.size(); i++){
-            tableData[i][0] = flightNumber.get(i);
-            tableData[i][1] = flightDate.get(i);
-            tableData[i][2] = flightTime.get(i);
+        ArrayList flightDestination = flightImportData.get(3);
+        ArrayList flightPrice = flightImportData.get(4);
+        Object[][] tableData = new String[flightID.size()][column.length];
+        for(int i = 0; i < flightID.size(); i++){
+            String n = String.valueOf(i+1);
+            tableData[i][0] = n;
+            tableData[i][1] = flightID.get(i);
+            tableData[i][2] = flightDate.get(i);
+            tableData[i][3] = flightTime.get(i);
+            tableData[i][4] = flightDestination.get(i);
+            tableData[i][5] = flightPrice.get(i);
         }
-        String[] column = {"Flight Number", "Flight Date", "Flight Time"};
         return new JTable(tableData, column);
     }
 
     JComboBox createCombo(){
         IOManager io = new IOManager("/flights.txt", "/bookings.txt");
         ArrayList<ArrayList> flightImportData = io.inputData();
-        ArrayList<String> flightNumber = flightImportData.get(0);
-        String[] comboData = new String[flightNumber.size()];
-        for(int i = 0; i < flightNumber.size(); i++){
-            comboData[i] = flightNumber.get(i);
+        ArrayList<String> flightID = flightImportData.get(0);
+        String[] comboData = new String[flightID.size()];
+        for(int i = 0; i < flightID.size(); i++){
+            comboData[i] = flightID.get(i);
         }
         return new JComboBox(comboData);
+    }
+
+    void registerCustomer(){
+        CustomerManager csMan = new CustomerManager(this.custNRIC.toString(), this.custName.toString(), this.custPhone.toString());
+    }
+
+    void registerFlight(){
+        FlightManager flMan = new FlightManager(availableFlights.getSelectedIndex());
     }
 
     private void createUIComponents() {

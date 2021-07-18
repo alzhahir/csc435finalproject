@@ -1,5 +1,6 @@
 package com.alzhahir.cscapp;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.util.Scanner;
@@ -48,12 +49,12 @@ public class IOManager {
         }
     }
 
-    void outputData(String[] CustomerNRIC, String[] flightNumber){
+    void outputFlight(String[] CustomerNRIC, String[] flightID){
         try {
             PrintWriter fileWriter = new PrintWriter(outputFile);
 
-            for(int i = 0; i < flightNumber.length; i++){
-                fileWriter.println(CustomerNRIC[i]+flightNumber[i]);
+            for(int i = 0; i < flightID.length; i++){
+                fileWriter.println(CustomerNRIC[i]+flightID[i]);
             }
             fileWriter.close();
         } catch (Exception error){
@@ -68,9 +69,11 @@ public class IOManager {
 
             String data;
             ArrayList<ArrayList> buildList = new ArrayList<>();
-            ArrayList<String> flightNumber = new ArrayList<>();
+            ArrayList<String> flightID = new ArrayList<>();
             ArrayList<String> flightDate = new ArrayList<>();
             ArrayList<String> flightTime = new ArrayList<>();
+            ArrayList<String> flightDestination = new ArrayList<>();
+            ArrayList<String> flightPrice = new ArrayList<>();
             while(fileReader.hasNextLine()){
                 data = fileReader.nextLine();
                 System.out.println(data);
@@ -78,13 +81,19 @@ public class IOManager {
                 String fn = parseData.nextToken();
                 String fd = parseData.nextToken();
                 String ft = parseData.nextToken();
-                flightNumber.add(fn);
+                String fde = parseData.nextToken();
+                String fp = parseData.nextToken();
+                flightID.add(fn);
                 flightDate.add(fd);
                 flightTime.add(ft);
+                flightDestination.add(fde);
+                flightPrice.add(fp);
             }
-            buildList.add(flightNumber);
+            buildList.add(flightID);
             buildList.add(flightDate);
             buildList.add(flightTime);
+            buildList.add(flightDestination);
+            buildList.add(flightPrice);
             return buildList;
         } catch (Exception error){
             error.printStackTrace();

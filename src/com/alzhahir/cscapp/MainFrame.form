@@ -173,6 +173,9 @@
                       <enabled value="false"/>
                       <updateSelectionOnSort value="false"/>
                     </properties>
+                    <clientProperties>
+                      <Table.isFileList class="java.lang.Boolean" value="false"/>
+                    </clientProperties>
                   </component>
                 </children>
               </scrollpane>
