@@ -165,9 +165,14 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="53ef8" class="javax.swing.JTable" binding="flightTable">
+                  <component id="53ef8" class="javax.swing.JTable" binding="flightTable" custom-create="true">
                     <constraints/>
-                    <properties/>
+                    <properties>
+                      <autoResizeMode value="0"/>
+                    </properties>
+                    <clientProperties>
+                      <Table.isFileList class="java.lang.Boolean" value="false"/>
+                    </clientProperties>
                   </component>
                 </children>
               </scrollpane>

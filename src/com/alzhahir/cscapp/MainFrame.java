@@ -24,13 +24,12 @@ public class MainFrame {
     private JButton submitButton;
 
     public MainFrame(){
-        //flightTable = createTable();
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try{
+                try {
                     throw new HttpConnectTimeoutException(null);
-                }catch (Exception error){
+                } catch (Exception error){
                     error.printStackTrace();
                     JOptionPane.showMessageDialog(null, error.toString(), "Error", JOptionPane.ERROR_MESSAGE);
                     System.exit(0);
@@ -58,5 +57,9 @@ public class MainFrame {
         Object[][] data = {{"MH1022", "10/07/2021", "10:20"}, {"MH3022", "15/07/2021", "13:40"}};
         JTable table = new JTable(data, column);
         return table;
+    }
+
+    private void createUIComponents() {
+        flightTable = createTable();
     }
 }
