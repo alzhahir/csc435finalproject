@@ -3,6 +3,10 @@ package com.alzhahir.cscapp;
 import javax.swing.*;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.net.http.HttpConnectTimeoutException;
 
 public class MainFrame {
     private JFrame MainWindow;
@@ -21,6 +25,17 @@ public class MainFrame {
 
     public MainFrame(){
         //flightTable = createTable();
+        cancelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{
+                    throw new HttpConnectTimeoutException(null);
+                }catch (Exception error){
+                    error.printStackTrace();
+                    JOptionPane.showMessageDialog(null, error.toString(), "Error", 2);
+                }
+            }
+        });
     }
 
     public static void main(String[] Args){
