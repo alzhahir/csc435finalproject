@@ -32,7 +32,8 @@ public class MainFrame {
                     throw new HttpConnectTimeoutException(null);
                 }catch (Exception error){
                     error.printStackTrace();
-                    JOptionPane.showMessageDialog(null, error.toString(), "Error", 2);
+                    JOptionPane.showMessageDialog(null, error.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+                    System.exit(0);
                 }
             }
         });
