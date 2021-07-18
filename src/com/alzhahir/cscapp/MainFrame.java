@@ -31,6 +31,7 @@ public class MainFrame {
     private JTable flightTable;
     private JButton cancelButton;
     private JButton submitButton;
+    private JPanel aboutTab;
     private String setCustName;
     private String setCustPhone;
     private  String setCustNRIC;
