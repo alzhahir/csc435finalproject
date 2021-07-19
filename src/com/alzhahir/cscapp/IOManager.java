@@ -1,5 +1,6 @@
 package com.alzhahir.cscapp;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.util.Scanner;
@@ -57,6 +58,67 @@ public class IOManager {
         } catch (Exception error){
             error.printStackTrace();
             System.exit(1);
+        }
+    }
+
+    String[][] queryBookings(String customerNRIC){
+        try{
+            Scanner fileReader = new Scanner(inputFile);
+
+            String[] queryData;
+            String[][] outputQuery;
+            String bookCustomerNRIC = "0";
+            String bookCustomerName = null;
+            String bookCustomerPhone = null;
+            String bookFlightID = null;
+            String bookFlightDestination = null;
+            String bookTotalPrice = null;
+            String data;
+            int foundData = 0;
+            int totalLines = 0;
+            int currentLine = 0;
+
+            while(fileReader.hasNextLine()){
+                totalLines++; //determine total lines
+                System.out.println("Currently on line "+totalLines);
+                fileReader.nextLine();
+            }
+
+            fileReader.close();
+            fileReader = new Scanner(inputFile);
+            outputQuery = new String[totalLines-1][];
+
+            while(fileReader.hasNextLine()){
+                System.out.println("Searching...");
+                data = fileReader.nextLine();
+                StringTokenizer parseData = new StringTokenizer(data, ";");
+                bookCustomerNRIC = parseData.nextToken();
+                if(bookCustomerNRIC.equals(customerNRIC)){
+                    bookCustomerName = parseData.nextToken();
+                    bookCustomerPhone = parseData.nextToken();
+                    bookFlightID = parseData.nextToken();
+                    bookFlightDestination = parseData.nextToken();
+                    bookTotalPrice = parseData.nextToken();
+                    queryData = new String[]{bookCustomerNRIC, bookCustomerName, bookCustomerPhone, bookFlightID, bookFlightDestination, bookTotalPrice};
+                    outputQuery[currentLine] = queryData;
+                    System.out.println("Found data at line "+currentLine);
+                    foundData++;
+                    currentLine++;
+                } else {
+                    //do nothing
+                }
+            }
+            fileReader.close();
+
+            if (foundData < 1){
+                JOptionPane.showMessageDialog(null, "No bookings made by "+customerNRIC+" found.", "Error", JOptionPane.ERROR_MESSAGE);
+                return null;
+            } else {
+                return outputQuery;
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+            return null;
         }
     }
 

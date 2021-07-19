@@ -32,6 +32,12 @@ public class MainFrame {
     private JButton cancelButton;
     private JButton submitButton;
     private JPanel aboutTab;
+    private JPanel reprintTab;
+    private JTextField searchNRIC;
+    private JButton cancelSearchButton;
+    private JButton searchTicketButton;
+    private JComboBox searchCombo;
+    private JButton reprintTicketButton;
     private String setCustName;
     private String setCustPhone;
     private  String setCustNRIC;
@@ -82,6 +88,50 @@ public class MainFrame {
                 BookingManager boMan = new BookingManager(csMan.getCustomerNRIC(), csMan.getCustomerName(), csMan.getCustomerPhone(), flMan.getFlightID(), flMan.getFlightDestination(), flMan.getTotalPrice());
 
                 boMan.printOutput();
+
+                JOptionPane.showMessageDialog(null, "Customer booking has been saved successfully.", "Booking Success", JOptionPane.INFORMATION_MESSAGE);
+
+                boMan.ticketOutput();
+
+                JOptionPane.showMessageDialog(null, "Ticket printed.", "Ticket Printed", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        searchTicketButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(searchNRIC.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Please enter an NRIC number.", "Warning", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                IOManager ioMan = new IOManager("/bookings.txt", "/bookings.txt");
+                String[][] chosenCustomer = ioMan.queryBookings(searchNRIC.getText());
+                if(chosenCustomer == null){
+                    return;
+                }
+
+                JOptionPane.showMessageDialog(null,"Tickets found for Customer "+searchNRIC.getText()+".", "Search Done", JOptionPane.INFORMATION_MESSAGE);
+
+                searchCombo.removeAllItems();
+                for (String[] strings : chosenCustomer) {
+                    System.out.println(strings[3]);
+                    searchCombo.setEnabled(true);
+                    searchCombo.addItem(strings[3]);
+                }
+            }
+        });
+        reprintTicketButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(!searchCombo.isEnabled()||searchCombo == null){
+                    JOptionPane.showMessageDialog(null, "No flights selected.", "Warning", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+                IOManager ioMan = new IOManager("/bookings.txt", "/ticket.txt");
+                String[][] chosenCustomer = ioMan.queryBookings(searchNRIC.getText());
+                String[] chosenFlight = chosenCustomer[searchCombo.getSelectedIndex()];
+                BookingManager boMan = new BookingManager(chosenFlight[0], chosenFlight[1], chosenFlight[2], chosenFlight[3], chosenFlight[4], Double.parseDouble(chosenFlight[5]));
+                boMan.ticketOutput();
+                JOptionPane.showMessageDialog(null,"Successfully printed tickets for chosen flight "+chosenFlight[3]+".", "Reprint Succeeded", JOptionPane.INFORMATION_MESSAGE);
             }
         });
     }

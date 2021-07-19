@@ -28,6 +28,25 @@ public class BookingManager {
         this.totalPrice = totalPrice;
     }
 
+    void ticketOutput(){
+        IOManager ioMan = new IOManager("/flights.txt", "/tickets.txt");
+
+        String[][] ticketData = new String[][]{
+                new String[]{"9Air Ticket Management System"},
+                new String[]{"==================================\n"},
+                new String[]{"Ticket Information\n=============\n"},
+                new String[]{"Customer name: "+this.customerName+"\n"},
+                new String[]{"Customer IC: "+this.customerNRIC+"\n"},
+                new String[]{"Customer Phone Number: "+this.customerPhone+"\n"},
+                new String[]{"Flight ID: "+this.flightID+"\n"},
+                new String[]{"Flight Destination: "+this.destination+"\n"},
+                new String[]{"Total Price: "+this.totalPrice+"\n==================================\n"},
+                new String[]{"Welcome aboard to 9Air! We hope you have a good time here."}
+        };
+
+        ioMan.outputFlight(ticketData);
+    }
+
     void printOutput(){
         IOManager ioMan = new IOManager("/flights.txt", "/bookings.txt");
 
