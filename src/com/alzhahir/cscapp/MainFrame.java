@@ -46,7 +46,7 @@ public class MainFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    int a = JOptionPane.showConfirmDialog(null,"Are you sure you want to cancel? Any unsaved changes will be lost.", "Confirm Exit", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                    int a = JOptionPane.showConfirmDialog(null,"Are you sure you want to cancel? Any unsaved changes will be lost.", "Confirm Cancel", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                     if(a == JOptionPane.YES_OPTION){
                         custName.setText(null);
                         custNRIC.setText(null);
@@ -136,7 +136,18 @@ public class MainFrame {
         cancelSearchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                try {
+                    int a = JOptionPane.showConfirmDialog(null,"Are you sure you want to cancel? Any changes will be lost.", "Confirm Canel", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                    if(a == JOptionPane.YES_OPTION){
+                        searchNRIC.setText(null);
+                        searchCombo.removeAllItems();
+                        mainPane.setSelectedIndex(0);
+                    }
+                } catch (Exception error){
+                    error.printStackTrace();
+                    JOptionPane.showMessageDialog(null, error.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+                    System.exit(1);
+                }
             }
         });
     }
