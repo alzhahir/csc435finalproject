@@ -57,7 +57,7 @@ public class MainFrame {
                 } catch (Exception error){
                     error.printStackTrace();
                     JOptionPane.showMessageDialog(null, error.toString(), "Error", JOptionPane.ERROR_MESSAGE);
-                    System.exit(0);
+                    System.exit(1);
                 }
             }
         });
@@ -131,6 +131,12 @@ public class MainFrame {
                 BookingManager boMan = new BookingManager(chosenFlight[0], chosenFlight[1], chosenFlight[2], chosenFlight[3], chosenFlight[4], Double.parseDouble(chosenFlight[5]));
                 boMan.ticketOutput();
                 JOptionPane.showMessageDialog(null,"Successfully printed tickets for chosen flight "+chosenFlight[3]+".", "Reprint Succeeded", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        cancelSearchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
             }
         });
     }
