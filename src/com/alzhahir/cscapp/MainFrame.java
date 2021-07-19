@@ -37,6 +37,8 @@ public class MainFrame {
     private JButton searchTicketButton;
     private JComboBox searchCombo;
     private JButton reprintTicketButton;
+    private JLabel totalPriceLabel;
+    private JButton calcPrice;
     private String setCustName;
     private String setCustPhone;
     private  String setCustNRIC;
@@ -148,6 +150,15 @@ public class MainFrame {
                     JOptionPane.showMessageDialog(null, error.toString(), "Error", JOptionPane.ERROR_MESSAGE);
                     System.exit(1);
                 }
+            }
+        });
+        calcPrice.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                double priceTotal = 0;
+                FlightManager flMan = new FlightManager(availableFlights.getSelectedIndex());
+                priceTotal = flMan.calculateTotalPrice();
+                totalPriceLabel.setText("RM "+priceTotal);
             }
         });
     }

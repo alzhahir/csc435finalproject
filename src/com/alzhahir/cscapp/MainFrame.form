@@ -74,7 +74,7 @@
               </component>
             </children>
           </grid>
-          <grid id="34911" binding="orderTab" layout-manager="GridLayoutManager" row-count="7" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="34911" binding="orderTab" layout-manager="GridLayoutManager" row-count="8" column-count="13" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <tabbedpane title="Order"/>
@@ -84,7 +84,7 @@
             <children>
               <component id="f62ca" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+                  <grid row="0" column="0" row-span="1" col-span="13" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <font size="18" style="1"/>
@@ -93,12 +93,12 @@
               </component>
               <vspacer id="eafb8">
                 <constraints>
-                  <grid row="5" column="5" row-span="2" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                  <grid row="5" column="12" row-span="3" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                 </constraints>
               </vspacer>
               <component id="6dc57" class="javax.swing.JTextField" binding="custName">
                 <constraints>
-                  <grid row="1" column="1" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                  <grid row="1" column="1" row-span="1" col-span="11" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
                   </grid>
                 </constraints>
@@ -114,7 +114,7 @@
               </component>
               <component id="d50e5" class="javax.swing.JTextField" binding="custPhone">
                 <constraints>
-                  <grid row="2" column="1" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                  <grid row="2" column="1" row-span="1" col-span="11" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
                   </grid>
                 </constraints>
@@ -138,7 +138,7 @@
               </component>
               <component id="7369b" class="javax.swing.JTextField" binding="custNRIC">
                 <constraints>
-                  <grid row="3" column="1" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                  <grid row="3" column="1" row-span="1" col-span="11" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
                   </grid>
                 </constraints>
@@ -146,7 +146,7 @@
               </component>
               <component id="99fad" class="javax.swing.JComboBox" binding="availableFlights" custom-create="true">
                 <constraints>
-                  <grid row="4" column="1" row-span="1" col-span="4" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="4" column="1" row-span="1" col-span="11" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
               </component>
@@ -160,7 +160,7 @@
               </component>
               <component id="7fed4" class="javax.swing.JButton" binding="cancelButton" default-binding="true">
                 <constraints>
-                  <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <text value="Cancel"/>
@@ -168,7 +168,7 @@
               </component>
               <component id="28389" class="javax.swing.JButton" binding="submitButton" default-binding="true">
                 <constraints>
-                  <grid row="6" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="7" column="11" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <text value="Submit"/>
@@ -176,7 +176,7 @@
               </component>
               <scrollpane id="d7dcc">
                 <constraints>
-                  <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <grid row="5" column="1" row-span="1" col-span="4" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties/>
                 <border type="none"/>
@@ -195,6 +195,30 @@
                   </component>
                 </children>
               </scrollpane>
+              <component id="b4019" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Total Price:"/>
+                </properties>
+              </component>
+              <component id="30199" class="javax.swing.JLabel" binding="totalPriceLabel">
+                <constraints>
+                  <grid row="6" column="1" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="RM 0.00"/>
+                </properties>
+              </component>
+              <component id="5fd2c" class="javax.swing.JButton" binding="calcPrice">
+                <constraints>
+                  <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Calculate Price"/>
+                </properties>
+              </component>
             </children>
           </grid>
           <grid id="20329" binding="reprintTab" layout-manager="GridLayoutManager" row-count="6" column-count="13" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
