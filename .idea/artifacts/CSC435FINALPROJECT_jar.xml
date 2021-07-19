@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CSC435FINALPROJECT:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CSC435FINALPROJECT_jar</output-path>
+    <root id="archive" name="CSC435FINALPROJECT.jar">
+      <element id="module-output" name="CSC435FINALPROJECT" />
+    </root>
+  </artifact>
+</component>
