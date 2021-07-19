@@ -55,6 +55,7 @@ public class MainFrame {
                         custPhone.setText(null);
                         availableFlights.setSelectedIndex(0);
                         mainPane.setSelectedIndex(0);
+                        totalPriceLabel.setText("RM 0.00");
                     }
                 } catch (Exception error){
                     error.printStackTrace();
