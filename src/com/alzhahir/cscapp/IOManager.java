@@ -2,6 +2,7 @@ package com.alzhahir.cscapp;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 import java.util.Scanner;
 import java.io.*;
@@ -83,6 +84,7 @@ public class IOManager {
             fileWriter.close();
         } catch (Exception error){
             error.printStackTrace();
+            JOptionPane.showMessageDialog(null, error.getLocalizedMessage(), "Fatal Error", JOptionPane.ERROR_MESSAGE);
             System.exit(1);
         }
     }
@@ -142,8 +144,18 @@ public class IOManager {
             } else {
                 return outputQuery;
             }
+        } catch (FileNotFoundException notFoundException){
+            notFoundException.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Please make sure that the booking file exists.", "Error", JOptionPane.ERROR_MESSAGE);
+            return null;
+        } catch (NoSuchElementException noBooking){
+            noBooking.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Bookings file is empty. Please create a new booking first.", "Error", JOptionPane.ERROR_MESSAGE);
+            return null;
         } catch (Exception e){
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getLocalizedMessage(), "Fatal Error", JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
             return null;
         }
     }
@@ -181,6 +193,7 @@ public class IOManager {
             return buildList;
         } catch (Exception error){
             error.printStackTrace();
+            JOptionPane.showMessageDialog(null, error.getLocalizedMessage(), "Fatal Error", JOptionPane.ERROR_MESSAGE);
             System.exit(1);
             return null;
         }

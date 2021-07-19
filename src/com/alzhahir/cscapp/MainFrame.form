@@ -359,7 +359,7 @@
                 </constraints>
                 <properties>
                   <font style="1"/>
-                  <text value="Version 0.0.1"/>
+                  <text value="Version 0.0.2"/>
                 </properties>
               </component>
             </children>

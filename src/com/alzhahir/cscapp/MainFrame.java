@@ -14,7 +14,6 @@ package com.alzhahir.cscapp;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.http.HttpConnectTimeoutException;
 import java.util.ArrayList;
 
 public class MainFrame {
@@ -137,33 +136,53 @@ public class MainFrame {
     }
 
     public static void main(String[] Args){
-        JFrame mainWindow = new JFrame("9Air Ticket Management System");
-        mainWindow.setContentPane(new MainFrame().MainPanel);
-        mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mainWindow.pack();
-        mainWindow.setSize(1000,600);
-        mainWindow.setMinimumSize(mainWindow.getSize());
-        mainWindow.setLocationRelativeTo(null);
-        System.out.println(mainWindow.getMinimumSize());
-        mainWindow.setMinimumSize(mainWindow.getSize());
-        mainWindow.setResizable(false);
-        mainWindow.setVisible(true);
+        try{
+            JFrame mainWindow = new JFrame("9Air Ticket Management System");
+            mainWindow.setContentPane(new MainFrame().MainPanel);
+            mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            mainWindow.pack();
+            mainWindow.setSize(1000,600);
+            mainWindow.setMinimumSize(mainWindow.getSize());
+            mainWindow.setLocationRelativeTo(null);
+            System.out.println(mainWindow.getMinimumSize());
+            mainWindow.setMinimumSize(mainWindow.getSize());
+            mainWindow.setResizable(false);
+            mainWindow.setVisible(true);
+        } catch (Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getLocalizedMessage(), "Fatal Error", JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
+        }
     }
 
     JTable createTable(){
-        FlightManager fMan = new FlightManager();
-        return new JTable(fMan.getAllFlightInfo(), fMan.getColumnInfo());
+        try{
+            FlightManager fMan = new FlightManager();
+            return new JTable(fMan.getAllFlightInfo(), fMan.getColumnInfo());
+        } catch (Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getLocalizedMessage(), "Fatal Error", JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
+            return null;
+        }
     }
 
     JComboBox createCombo(){
-        IOManager io = new IOManager("/flights.txt", "/bookings.txt");
-        ArrayList<ArrayList> flightImportData = io.inputData();
-        ArrayList<String> flightID = flightImportData.get(0);
-        String[] comboData = new String[flightID.size()];
-        for(int i = 0; i < flightID.size(); i++){
-            comboData[i] = flightID.get(i);
+        try{
+            IOManager io = new IOManager("/flights.txt", "/bookings.txt");
+            ArrayList<ArrayList> flightImportData = io.inputData();
+            ArrayList<String> flightID = flightImportData.get(0);
+            String[] comboData = new String[flightID.size()];
+            for(int i = 0; i < flightID.size(); i++){
+                comboData[i] = flightID.get(i);
+            }
+            return new JComboBox(comboData);
+        } catch (Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getLocalizedMessage(), "Fatal Error", JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
+            return null;
         }
-        return new JComboBox(comboData);
     }
 
     void registerCustomer(){
