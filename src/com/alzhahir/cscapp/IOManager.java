@@ -7,7 +7,7 @@ import java.util.Scanner;
 import java.io.*;
 
 public class IOManager {
-    private String workingDir = System.getenv("userprofile")+"/Documents/alzhahirappio";
+    private String workingDir = System.getenv("userprofile")+"/Documents/9AirTicketManagement";
     private String outputFilename = "/output.txt";
     private String inputFilename = "/input.txt";
     private File inputFile = new File(workingDir+inputFilename);
