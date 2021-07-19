@@ -114,7 +114,7 @@ public class IOManager {
 
             fileReader.close();
             fileReader = new Scanner(inputFile);
-            outputQuery = new String[totalLines-1][];
+            outputQuery = new String[totalLines][];
 
             while(fileReader.hasNextLine()){
                 System.out.println("Searching...");
