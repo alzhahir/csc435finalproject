@@ -14,16 +14,42 @@ public class IOManager {
     private File outputFile = new File(workingDir+outputFilename);
 
     IOManager(){
+        try{
+            File config = new File("./config.txt");
+            Scanner scanConfig = new Scanner(config);
+            String data;
+            while(scanConfig.hasNextLine()){
+                data = scanConfig.nextLine();
+                StringTokenizer parseData = new StringTokenizer(data, ";");
+                this.workingDir = System.getenv("userprofile")+parseData.nextToken();
+            }
+            scanConfig.close();
+        } catch (Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getLocalizedMessage(), "Fatal Error", JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
+        }
     }
 
     IOManager(String inputFilename, String outputFilename){
         try {
+            File config = new File("./config.txt");
+            Scanner scanConfig = new Scanner(config);
+            String data;
+            while(scanConfig.hasNextLine()){
+                data = scanConfig.nextLine();
+                StringTokenizer parseData = new StringTokenizer(data, ";");
+                this.workingDir = System.getenv("userprofile")+parseData.nextToken();
+            }
+            scanConfig.close();
             this.inputFilename = inputFilename;
             this.outputFilename = outputFilename;
             inputFile = new File(this.workingDir+this.inputFilename);
             outputFile = new File(this.workingDir+this.outputFilename);
-        } catch (Exception error){
-            error.printStackTrace();
+        } catch (Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getLocalizedMessage(), "Fatal Error", JOptionPane.ERROR_MESSAGE);
+            System.exit(1);
         }
     }
 
